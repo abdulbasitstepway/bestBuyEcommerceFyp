@@ -1,0 +1,21 @@
+
+<div class="card p-0" [style]="{ width: '250px'}">
+    <p-card header="Armani Bag" subheader="Description" [style]="{ width: '250px' }" >
+        <!-- 'border': '1px solid gray' -->
+        <ng-template pTemplate="header" [style]="{'height':'200px'}">
+            <img alt="Card" src="../../../assets/product images/product-11.jpg" height='250px'
+             [style]="{ width: '249px' , 'height':'200px'}" styleClass="h-2rem"/>
+             
+        </ng-template>
+        <p [style]="{ color: 'black'}">Price : $200</p>
+        <ng-template pTemplate="footer">
+            <div class="card flex flex-wrap flex-row" [style]="{ border: 'none' }" >
+            <p-button label="Add to Cart" [rounded]="true" 
+            [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }"></p-button>
+            <p-button class="ml-4" icon="pi pi-heart" [rounded]="true" severity="success" 
+            [style]="{ 'color': 'white','background-color':'black' ,'border':'1px solid black'}"></p-button>
+            <!-- <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button> -->
+        </div>
+        </ng-template>
+    </p-card>
+</div>
