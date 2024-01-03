@@ -41,7 +41,7 @@
                     <div *ngFor="let product of productList" class="col-4 text-center p-1 border-round  font-bold ">
                         <p-card header="{{product.name}}"  subheader="" styleClass="border" [style]="{ width: '315px' }">
                             <ng-template pTemplate="header">
-                                <img alt="Card" [style]="{ padding : '5px' }" src="../../../assets/product images/product-3.jpg" height="260px" />
+                                <img alt="Card" [style]="{ padding : '5px' }" [src]="product.image.image" height="260px" />
                             </ng-template>
                             <!-- <p class="p-0">
                                 {{product.name}}

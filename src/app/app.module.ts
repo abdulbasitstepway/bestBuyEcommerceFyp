@@ -26,6 +26,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -45,7 +46,8 @@ import { FormsModule } from '@angular/forms';
     ProductListComponent,
     ProductCardComponent,
     FooterMainComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

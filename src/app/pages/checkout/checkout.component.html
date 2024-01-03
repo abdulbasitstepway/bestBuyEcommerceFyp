@@ -1,5 +1,4 @@
 
-
 <div class="container-fluid p-0">
     <app-header></app-header>
     <div class="container">
@@ -14,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th>Product</th>
-                                <th>Quantity</th>
+                                <!-- <th>Quantity</th> -->
                                 <th>Total</th>
                                 <th></th>
                             </tr>
@@ -35,14 +34,14 @@
                                         <h5>$98.49</h5>
                                     </div>
                                 </td>
-                                <td class="quantity__item">
+                                <!-- <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
                                             <p-inputNumber [(ngModel)]="value1" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" 
                                             decrementButtonClass="p-button-secondary bg-black"incrementButtonClass="p-button-secondary bg-black" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="cart__price">$ 30.00</td>
                                 <td class="cart__close "><i class="pi pi-times fw-bold"></i></td>
                             </tr>
@@ -56,14 +55,14 @@
                                         <h5>$98.49</h5>
                                     </div>
                                 </td>
-                                <td class="quantity__item">
+                                <!-- <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
                                             <p-inputNumber [(ngModel)]="value1" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" 
                                             decrementButtonClass="p-button-secondary bg-black"incrementButtonClass="p-button-secondary bg-black" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="cart__price">$ 32.50</td>
                                 <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
                             </tr>
@@ -77,14 +76,14 @@
                                         <h5>$98.49</h5>
                                     </div>
                                 </td>
-                                <td class="quantity__item">
+                                <!-- <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
                                             <p-inputNumber [(ngModel)]="value1" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" 
                                             decrementButtonClass="p-button-secondary bg-black"incrementButtonClass="p-button-secondary bg-black" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="cart__price">$ 47.00</td>
                                 <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
                             </tr>
@@ -98,14 +97,14 @@
                                         <h5>$98.49</h5>
                                     </div>
                                 </td>
-                                <td class="quantity__item">
+                                <!-- <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
                                             <p-inputNumber [(ngModel)]="value1" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical" 
                                             decrementButtonClass="p-button-secondary bg-black"incrementButtonClass="p-button-secondary bg-black" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="cart__price">$ 300.00</td>
                                 <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
                             </tr>
@@ -113,45 +112,41 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="continue__btn">
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn"> -->
                             <!-- <a href="#">Continue Shopping</a> -->
-                            <p-button label="Continue Shopping" [rounded]="true" 
+                            <!-- <p-button label="Continue Shopping" [rounded]="true" 
                             [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }"></p-button>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="continue__btn update__btn">
+                    </div> -->
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn"> -->
                             <!-- <a href="#"><i class="fa fa-spinner"></i> Update cart</a> -->
-                            <p-button label="Update Cart" [rounded]="true" 
+                            <!-- <p-button label="Update Cart" [rounded]="true" 
                             [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }"></p-button>
                             
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="cart__discount">
+                <!-- <div class="cart__discount">
                     <h6>Discount codes</h6>
                     <form action="#">
                         <input type="text" placeholder="Coupon code">
                         <button type="submit">Apply</button>
                         
                     </form>
-                </div>
+                </div> -->
                 <div class="cart__total">
-                    <h6>Cart total</h6>
+                    <h6>Order Summary</h6>
                     <ul>
+                        <li>Items Total <span>1</span></li>
                         <li>Subtotal <span>$ 169.50</span></li>
                         <li>Total <span>$ 169.50</span></li>
                     </ul>
-                    <p-button label="Proceed to checkout" [rounded]="true" (click)="click()"
-            [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }">
-        </p-button>
-        <!-- <p-button label="Proceed to checkout" [rounded]="true" 
-            [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }">
-    <a href="./../checkout/checkout.component.html" ></a>
-</p-button> -->
+                    <p-button label="Place Order" [rounded]="true" 
+            [style]="{ 'color': 'white','background-color':'black','border':'1px solid black','padding':'8px 120px'}"></p-button>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [{
   component: SignupComponent,
@@ -31,6 +32,10 @@ const routes: Routes = [{
 {
   component: ShoppingCartComponent,
   path: 'cart'
+},
+{
+  component:CheckoutComponent,
+  path:'checkout'
 }
 
 ];
