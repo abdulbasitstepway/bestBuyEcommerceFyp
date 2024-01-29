@@ -19,13 +19,60 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tr *ngFor="let product of products">
+                            <td class="product__cart__item">
+                              <div class="product__cart__item__pic">
+                                <img [src]="product.product.productImages[0].image" alt="{{ product.product.name }}" width="100px">
+                              </div>
+                              <div class="product__cart__item__text">
+                                <h6>{{ product.product.name }}</h6>
+                                <h5>${{ product.product.price | number: '1.2-2' }}</h5>
+                              </div>
+                            </td>
+                            <td class="quantity__item">
+                              <div class="quantity">
+                                <div class="pro-qty-2">
+                                  <p-inputNumber [(ngModel)]="product.quantity" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
+                                    decrementButtonClass="p-button-secondary bg-black" incrementButtonClass="p-button-secondary bg-black"
+                                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" (click)="incrementQuantity(product.quantity,product)"></p-inputNumber>
+                                    
+                                </div>
+                              </div>
+                            </td>
+                            <td class="cart__price">${{ product.amount | number: '1.2-2' }}</td>
+                            <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
+                          </tr>
+                            <!-- <tr *ngFor="let product of products">
+                              <td class="product__cart__item">
+                                <div class="product__cart__item__pic">
+                                  <img [src]="product.imageSrc" alt="{{ product.name }}" width="100px">
+                                </div>
+                                <div class="product__cart__item__text">
+                                  <h6>{{ product.name }}</h6>
+                                  <h5>${{ product.price | number: '1.2-2' }}</h5>
+                                </div>
+                              </td>
+                              <td class="quantity__item">
+                                <div class="quantity">
+                                  <div class="pro-qty-2">
+                                    <p-inputNumber [(ngModel)]="product.quantity" [style]="{'width': '4rem'}" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
+                                      decrementButtonClass="p-button-secondary bg-black" incrementButtonClass="p-button-secondary bg-black"
+                                      incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="cart__price">${{ product.price * product.quantity | number: '1.2-2' }}</td>
+                              <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
+                            </tr> -->
+                        
                                 <!-- <td>
                                     <div class="product__cart__item__pic">
                                         <img src="../../../assets/img/product-images/product-3.jpg" alt="" >
                                     </div>
                                 </td> -->
+                                <!-- <tbody>
+                                    <tr>
+                                
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
                                         <img src="../../../assets/product images/product-11.jpg" alt="" width="100px">
@@ -45,8 +92,8 @@
                                 </td>
                                 <td class="cart__price">$ 30.00</td>
                                 <td class="cart__close "><i class="pi pi-times fw-bold"></i></td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                            <!-- <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
                                         <img src="../../../assets/product images/product-3.jpg" width="100px" alt="">
@@ -108,8 +155,8 @@
                                 </td>
                                 <td class="cart__price">$ 300.00</td>
                                 <td class="cart__close"><i class="pi pi-times fw-bold"></i></td>
-                            </tr>
-                        </tbody>
+                            </tr> -->
+                        <!-- </tbody> -->
                     </table>
                 </div>
                 <div class="row">
@@ -125,7 +172,7 @@
                             <!-- <a href="#"><i class="fa fa-spinner"></i> Update cart</a> -->
                             <p-button label="Update Cart" [rounded]="true" 
                             [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }"></p-button>
-                            
+                                
                         </div>
                     </div>
                 </div>
@@ -142,8 +189,8 @@
                 <div class="cart__total">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Subtotal <span>$ 169.50</span></li>
-                        <li>Total <span>$ 169.50</span></li>
+                        <li>Subtotal <span>$ {{total}}</span></li>
+                        <li>Total <span>$ {{total}}</span></li>
                     </ul>
                     <p-button label="Proceed to checkout" [rounded]="true" (click)="click()"
             [style]="{ 'color': 'white','background-color':'black','border':'1px solid black' }">
