@@ -9,15 +9,19 @@
             <div class="col-lg-6 col-md-5">
                 <div class="header__top__right">
                     <div class="header__top__links">
-                        <a href="login.html">Sign in</a>
+                        <!-- <a href="" routerLink="/login">Sign in</a> -->
+                        <a *ngIf="isSignInShow" routerLink="/login">Sign in</a>
+                        <a *ngIf="isLogOutBtnShow" routerLink="/login" (click)="logout()">Log out</a>
                         <a href="#">FAQs</a>
                     </div>
                     <div class="header__top__hover">
-                        <span>Usd <i class="arrow_carrot-down"></i></span>
+                        <span>{{currency}} <i class="arrow_carrot-down"></i></span>
                         <ul>
-                            <li>USD</li>
+                            <!-- <li>USD</li>
                             <li>EUR</li>
-                            <li>USD</li>
+                            <li>USD</li> -->
+                            <li *ngFor="let currency of currencyList" (click)="getCurrencyById(currency.id,currency.currencyCode)">{{ currency.currencyCode }}</li>
+
                         </ul>
                     </div>
                 </div>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,12 +11,26 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignupComponent {
 
   loginForm: FormGroup | undefined;
+
+  user:any;
+
+signUp = this.formBuilder.group({
+  username: '',
+  email: '',
+  password:''
+});
+
+
+
+
+
+
   // hasSubmitted: boolean;
 
   // get username(){ return this.loginForm.get('username'); }
   // get password(){ return this.loginForm.get('password'); }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private userService:UserService,private router:Router) {
     // this.loginForm = this.fb.group({
     //   username : ['',[Validators.required, Validators.pattern("^[a-zA-Z0-9\-]+$")]],
     //   password : ['',[Validators.required, Validators.minLength(6)]]
@@ -23,25 +39,27 @@ export class SignupComponent {
   ngOnInit(): void { }
 
   onSubmit() {
-    // this.hasSubmitted = true;
-    //console.log(this.loginForm.value);
-    // const token = this.authService.authUser(this.loginForm.value);
-    // if (this.loginForm.valid) {
-      // if(token){ //if user have some value it will check and validate
-        // localStorage.setItem('token',token.username);
-        // alertify.success('You have logged in successfully');
-        // this.router.navigate(['/special']);
-      }
-      // else{ //if user is null or incorrect
-      //   alert('Username or Password is wrong');
-      // }
-      
-      // this.loginForm.reset();
-      // this.hasSubmitted = false;
-    }
-    // else{
-    //   alert('Kindly fill required fields');
-    // }
-  
+    // Print form values to the console
+    console.log('Form Values:', this.signUp.value.email);
+    console.log('Form Values:', this.signUp.value.username);
+    console.log('Form Values:', this.signUp.value.password);
 
-// }
+    let obj ={
+      name:this.signUp.value.username,
+      email:this.signUp.value.email,
+      password:this.signUp.value.password
+    }
+this.userService.signUpUser(obj).subscribe((response)=>{
+  debugger
+  this.user=response
+  if(this.user){
+    alert("SignUp Successfully")
+    this.router.navigate(['login']);
+    }else{
+    alert(this.signUp.value.email+ " " +"are not registered")
+  }
+})
+
+  }
+  
+        }

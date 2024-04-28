@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
+import { CurrencyService } from 'src/app/services/currency.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -8,6 +10,16 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent implements OnInit{
+nextPage() {
+  this.currentPage++;
+  this.getAllProducts();
+}
+previousPage() {
+   if (this.currentPage > 1) {
+  this.currentPage--;
+  this.getAllProducts();
+}
+}
 
 
 productList:any;
@@ -17,13 +29,30 @@ userId:any;
 cart:any;
 cartProduct:any;
 categoryList:any;
-  constructor(private productService: ProductsService,private categoryService:CategoryService){ }
+currentPage = 1;
+  pageSize = 6;
+  constructor(private productService: ProductsService,private categoryService:CategoryService,
+    private router:Router,private currencyService:CurrencyService){ }
 
+    currencyRate:any;
+    currencyId:any;
   ngOnInit(): void {
-    localStorage.setItem('userId',"1");
-    localStorage.setItem('cartId',"4");
+    // localStorage.setItem('userId',"1");
+    // localStorage.setItem('cartId',"4");
+   this.currencyId= localStorage.getItem('currencyId');
+   this.getCurrencyConversionRate();
     this.getAllProducts();
     this.getAllCategory();
+  }
+
+  getCurrencyConversionRate(){
+    if(this.currencyId){
+    this.currencyService.getConversionCurrency(this.currencyId).subscribe((response)=>{
+this.currencyRate=response;
+console.log(this.currencyRate.conversionCurrency.conversionRate+"currencyRate")
+    
+    })
+  }
   }
 
   getAllCategory(){
@@ -41,6 +70,8 @@ categoryList:any;
     console.log("abc"+ categoryId);
     this.productService.getProductBycategory(categoryId).subscribe((product:any)=>{
       this.productList = product;
+      console.log("currencyID");
+     
       console.log(product);
       
     },(error:any)=>{
@@ -53,6 +84,7 @@ categoryList:any;
   
   addToCartClicked(prodId:any) {
     debugger
+    if(localStorage.getItem('userId')!=null){
     if(localStorage.getItem('cartId')==null){
      this.userId= localStorage.getItem('userId');
      let obj={
@@ -85,33 +117,43 @@ categoryList:any;
         this.cartProduct=response;
       })
     }
-    } 
-  // getAllCategory(){
-  //   this.categoryService.getAllCategory().subscribe((category:any)=>{
-  //     this.listCategory=category;
-  //     console.log(this.listCategory);
-      
-  //   },(error:any)=>{
-  //     console.log(error);
-  //   })
-  // }
-
-  getAllProducts(){
-    this.productService.getProduct().subscribe((product:any)=>{
-      this.productList = product;
-      console.log(product);
-    },(error:any)=>{
-      console.log(error);
-      
-    })
+  }else{
+    alert("Please Login")
+    this.router.navigate(['login']);
   }
+    } 
+ 
+
+    getAllProducts() {
+      this.productService.getProductsByPgSize(this.currentPage,this.pageSize).subscribe((products: any) => {
+        this.productList = products;
+        // console.log(products);
+        
+        if (this.currencyId && this.currencyRate) {
+          this.productList = this.productList.map((product: any) => {
+            console.log("Original price:", product.price);
+            console.log("Conversion rate:", this.currencyRate.conversionRate);
+            
+            product.price = product.price * this.currencyRate.conversionCurrency.conversionRate;
+            
+            console.log("Updated price:", product.price);
+            
+            return product;
+          });
+        }
+        // console.log(this.productList.id);
+        
+      }, (error: any) => {
+        console.log(error);
+      });
+    }
+    
 //aa
   getSearchByProduct(name:any){
     if(this.searchName === ''){
       this.getAllProducts()
     }else{
       this.productService.getSearchProducts(name.value).subscribe(response=>{
-        debugger
         console.log(response);
         // this.searchName = JSON.stringify(response)
            this.productList=response;
